@@ -1,0 +1,85 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if the user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if the user is the designated store admin
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.email == 'rstsbd@gmail.com' ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+      );
+    }
+
+    // Products: anyone can read, only admin can create/update/delete
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Categories: anyone can read, only admin can manage
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Orders:
+    // Anyone (guests and logged-in users) can create orders.
+    // Users can read their own orders. Admins can read and update all orders.
+    match /orders/{orderId} {
+      allow create: if true;
+      allow read: if isAdmin() || (isAuthenticated() && resource.data.userId == request.auth.uid);
+      allow update, delete: if isAdmin();
+    }
+
+    // Users:
+    // User can read and edit their own profile. Admin can read all users and edit role.
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow create, update: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // Blog Posts:
+    // Anyone can read blog posts. Only admin can create, edit, or delete posts.
+    match /blogPosts/{postId} {
+      allow read: if true;
+      allow write: if isAdmin();
+
+      // Comments subcollection:
+      // Anyone can create a comment (subject to approval).
+      // Anyone can read approved comments. Admin can read all and update/delete (moderation).
+      match /comments/{commentId} {
+        allow read: if resource.data.approved == true || isAdmin();
+        allow create: if true;
+        allow update, delete: if isAdmin();
+      }
+    }
+
+    // Blog Comments root collection (for flat queries or moderation)
+    match /blogComments/{commentId} {
+      allow read: if resource.data.approved == true || isAdmin();
+      allow create: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    // Site Settings:
+    // Anyone can read (for hero banners, announcement bar, ad slots, social links). Only admin can write.
+    match /siteSettings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Newsletter Subscribers:
+    // Anyone can create a subscription. Only admin can read and manage.
+    match /newsletter/{subId} {
+      allow create: if true;
+      allow read, write: if isAdmin();
+    }
+  }
+}

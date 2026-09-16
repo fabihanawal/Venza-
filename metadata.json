@@ -1,0 +1,7 @@
+{
+  "name": "ভেনজা (Venza) - গ্যাজেট ও ইলেকট্রনিক্স",
+  "description": "বদলগাছী, নওগাঁ ভিত্তিক গ্যাজেট ও ইলেকট্রনিক্স পণ্যের পূর্ণাঙ্গ বাংলা ই-কমার্স প্ল্যাটফর্ম",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
