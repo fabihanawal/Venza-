@@ -20,7 +20,7 @@ import { db } from '../lib/firebase';
 import { sanitizeInput } from '../utils/formatters';
 
 export const Footer: React.FC = () => {
-  const { siteSettings, categories, setSelectedCategory, setActiveView } = useStore();
+  const { siteSettings, categories, setSelectedCategory, setActiveView, setPolicyTab } = useStore();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -201,23 +201,75 @@ export const Footer: React.FC = () => {
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">গ্রাহক সেবা ও নীতি</h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <button onClick={() => setActiveView('orders')} className="hover:text-emerald-400 transition-colors">
+                <button 
+                  onClick={() => setActiveView('orders')} 
+                  className="hover:text-emerald-400 transition-colors cursor-pointer text-left"
+                >
                   অর্ডার ট্র্যাকিং
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveView('blog')} className="hover:text-emerald-400 transition-colors">
+                <button 
+                  onClick={() => setActiveView('blog')} 
+                  className="hover:text-emerald-400 transition-colors cursor-pointer text-left"
+                >
                   টেক ব্লগ ও রিভিউ
                 </button>
               </li>
               <li>
-                <span className="hover:text-emerald-400 cursor-pointer">রিটার্ন ও রিফান্ড নীতিমালা</span>
+                <button 
+                  onClick={() => {
+                    setPolicyTab('refund');
+                    setActiveView('policy');
+                  }} 
+                  className="hover:text-emerald-400 transition-colors cursor-pointer text-left"
+                >
+                  রিটার্ন ও রিফান্ড নীতিমালা
+                </button>
               </li>
               <li>
-                <span className="hover:text-emerald-400 cursor-pointer">ওয়ারেন্টি ক্লেইম গাইডলাইন</span>
+                <button 
+                  onClick={() => {
+                    setPolicyTab('warranty');
+                    setActiveView('policy');
+                  }} 
+                  className="hover:text-emerald-400 transition-colors cursor-pointer text-left"
+                >
+                  ওয়ারেন্টি ক্লেইম গাইডলাইন
+                </button>
               </li>
               <li>
-                <span className="hover:text-emerald-400 cursor-pointer">গোপনীয়তা নীতিমালা</span>
+                <button 
+                  onClick={() => {
+                    setPolicyTab('privacy');
+                    setActiveView('policy');
+                  }} 
+                  className="hover:text-emerald-400 transition-colors cursor-pointer text-left"
+                >
+                  গোপনীয়তা নীতিমালা
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    setPolicyTab('faq');
+                    setActiveView('policy');
+                  }} 
+                  className="hover:text-emerald-400 transition-colors cursor-pointer text-left"
+                >
+                  সাধারণ জিজ্ঞাসা (FAQ)
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    setPolicyTab('contact');
+                    setActiveView('policy');
+                  }} 
+                  className="hover:text-emerald-400 transition-colors cursor-pointer text-left"
+                >
+                  স্টোরের অবস্থান ও যোগাযোগ
+                </button>
               </li>
             </ul>
           </div>

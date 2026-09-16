@@ -265,22 +265,52 @@ export const INITIAL_SITE_SETTINGS: SiteSettings = {
   heroBanners: [
     {
       id: 'banner-1',
-      title: 'প্রিমিয়াম গ্যাজেট ও আধুনিক ইলেকট্রনিক্স',
-      subtitle: '১০০% আসল পণ্যের নিশ্চয়তা সহ সরাসরি আপনার দোরগোড়ায়। নওগাঁ ও বদলগাছীর বিশ্বস্ত ঠিকানা।',
-      badge: 'নতুন আগমন ২০২৬',
-      buttonText: 'অফার দেখুন',
-      link: '#products',
-      image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=1200&auto=format&fit=crop&q=80',
+      title: 'প্রিমিয়াম স্মার্টফোন ও ফ্ল্যাগশিপ গ্যাজেট ২০২৬',
+      subtitle: '১০০% আসল পণ্যের নিশ্চয়তা সহ সরাসরি আপনার দোরগোড়ায়। নওগাঁ ও বদলগাছীর সবচেয়ে বিশ্বস্ত ইলেকট্রনিক্স শপ।',
+      badge: 'নতুন ফ্ল্যাগশিপ গ্যাজেট',
+      buttonText: 'কালেকশন দেখুন',
+      link: 'products',
+      image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02596?w=1400&auto=format&fit=crop&q=85',
       active: true
     },
     {
       id: 'banner-2',
       title: 'স্মার্ট অ্যাক্সেসরিজ মেগা ফ্ল্যাশ সেল',
-      subtitle: 'স্মার্টওয়াচ, ইয়ারবাডস ও ফাস্ট চার্জারে বিশেষ ২০% থেকে ৩৫% মূল্যছাড়। সীমিত সময়ের অফার!',
-      badge: 'সীমিত স্টক',
-      buttonText: 'এখনই কিনুন',
-      link: '#flash-sale',
-      image: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=1200&auto=format&fit=crop&q=80',
+      subtitle: 'স্মার্টওয়াচ, ANC ইয়ারবাডস ও ফাস্ট চার্জারে বিশেষ ২০% থেকে ৩৫% মূল্যছাড়। সীমিত সময়ের অফার!',
+      badge: 'সীমিত স্টক অফার',
+      buttonText: 'ফ্ল্যাশ সেল কিনুন',
+      link: 'flash-sale',
+      image: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=1400&auto=format&fit=crop&q=85',
+      active: true
+    },
+    {
+      id: 'banner-3',
+      title: 'হাই-রেজ অডিও ও স্টুডিও কোয়ালিটি হেডফোন',
+      subtitle: 'JBL, Sony ও Anker এর ডিপ ব্যাস সাউন্ড, অ্যাক্টিভ নয়েজ ক্যান্সেলেশন এবং সারাদিনের ব্যাটারি ব্যাকআপ।',
+      badge: 'প্রিমিয়াম অডিও',
+      buttonText: 'অডিও গ্যাজেট দেখুন',
+      link: 'audio-headphones',
+      image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1400&auto=format&fit=crop&q=85',
+      active: true
+    },
+    {
+      id: 'banner-4',
+      title: 'আল্ট্রা-ফাস্ট GaN চার্জার ও হেভি পাওয়ার ব্যাংক',
+      subtitle: 'Baseus ও Xiaomi এর ৬৫W/১০০W সুপারভুক ও পিডি চার্জার। এক চার্জারে ফোন, ট্যাব ও ল্যাপটপ।',
+      badge: 'কুইক চার্জিং সলিউশন',
+      buttonText: 'চার্জার সমূহ',
+      link: 'power-charging',
+      image: 'https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=1400&auto=format&fit=crop&q=85',
+      active: true
+    },
+    {
+      id: 'banner-5',
+      title: 'কম্পিউটার ও প্রোডাক্টিভিটি এক্সট্রিম গিয়ার',
+      subtitle: 'Logitech প্রিমিয়াম ওয়্যারলেস মাউস, মেকানিক্যাল কিবোর্ড ও হাই-স্পিড টাইপ-সি হাবের বিশাল সমাহার।',
+      badge: 'পিসি ও ল্যাপটপ গিয়ার',
+      buttonText: 'কম্পিউটার সামগ্রী',
+      link: 'laptop-pc',
+      image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=1400&auto=format&fit=crop&q=85',
       active: true
     }
   ],

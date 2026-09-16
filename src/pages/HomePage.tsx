@@ -17,6 +17,7 @@ import {
 import { useStore } from '../context/StoreContext';
 import { ProductCard } from '../components/ProductCard';
 import { NativeAdCard } from '../components/NativeAdCard';
+import { HeroSlider } from '../components/HeroSlider';
 import { toBanglaNumber } from '../utils/formatters';
 
 export const HomePage: React.FC = () => {
@@ -57,60 +58,16 @@ export const HomePage: React.FC = () => {
     }
   };
 
-  const activeHero = siteSettings.heroBanners?.find((b) => b.active) || siteSettings.heroBanners?.[0];
+  const heroBannersList = siteSettings.heroBanners && siteSettings.heroBanners.length > 0 
+    ? siteSettings.heroBanners 
+    : [];
   const gridAds = siteSettings.adSlots?.slots?.filter((s) => s.active && s.position === 'productGrid') || [];
 
   return (
     <div className="space-y-12 pb-16">
-      {/* 1. Hero Banner */}
-      {activeHero && (
-        <section className="relative overflow-hidden bg-slate-900 text-white rounded-3xl mx-4 sm:mx-6 lg:mx-8 mt-4 shadow-xl border border-slate-800">
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent z-10" />
-          <img
-            src={activeHero.image}
-            alt={activeHero.title}
-            className="absolute inset-0 w-full h-full object-cover object-center opacity-40 mix-blend-overlay"
-          />
-
-          <div className="relative z-20 max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 py-16 sm:py-24 lg:py-28 flex flex-col justify-center max-w-2xl">
-            <span className="inline-flex items-center gap-1.5 self-start bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full mb-4">
-              <Sparkles className="w-3.5 h-3.5" />
-              {activeHero.badge}
-            </span>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-4">
-              {activeHero.title}
-            </h1>
-
-            <p className="text-sm sm:text-base text-slate-300 mb-8 leading-relaxed">
-              {activeHero.subtitle}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3.5">
-              <button
-                id="hero-cta-btn"
-                onClick={() => {
-                  setSelectedCategory(null);
-                  setActiveView('products');
-                }}
-                className="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm shadow-lg shadow-emerald-600/30 hover:scale-[1.02] transition-all flex items-center gap-2"
-              >
-                <span>{activeHero.buttonText || 'কেনাকাটা শুরু করুন'}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
-              <button
-                onClick={() => {
-                  setSelectedCategory('flash-sale');
-                  setActiveView('products');
-                }}
-                className="px-6 py-3.5 bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700 font-semibold rounded-xl text-sm transition-all"
-              >
-                ফ্ল্যাশ সেল অফার
-              </button>
-            </div>
-          </div>
-        </section>
+      {/* 1. Interactive Hero Slider with Smooth Transitions */}
+      {heroBannersList.length > 0 && (
+        <HeroSlider banners={heroBannersList} />
       )}
 
       {/* 2. Flash Sale Section with Countdown Timer */}

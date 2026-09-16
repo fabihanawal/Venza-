@@ -26,7 +26,8 @@ export const Header: React.FC = () => {
     setSearchQuery, 
     activeView, 
     setActiveView, 
-    setSelectedCategory 
+    setSelectedCategory,
+    setPolicyTab
   } = useStore();
   const { totalItems, setIsCartOpen } = useCart();
   const { user, isAdmin, signInWithGoogle, logout } = useAuth();
@@ -333,6 +334,21 @@ export const Header: React.FC = () => {
             >
               ব্লগ ও রিভিউ
             </button>
+
+            <button
+              id="nav-policy"
+              onClick={() => {
+                setPolicyTab('refund');
+                setActiveView('policy');
+              }}
+              className={`px-3 py-2 rounded-md transition-colors ${
+                activeView === 'policy'
+                  ? 'bg-emerald-600 text-white font-semibold'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              সেবা ও নীতিমালা
+            </button>
           </div>
 
           <div className="flex items-center gap-4 text-slate-400 text-xs">
@@ -399,6 +415,17 @@ export const Header: React.FC = () => {
                 className="w-full text-left px-3 py-2.5 text-sm font-semibold text-slate-800 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg"
               >
                 টেক ব্লগ ও রিভিউ
+              </button>
+
+              <button
+                onClick={() => {
+                  setPolicyTab('refund');
+                  setActiveView('policy');
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left px-3 py-2.5 text-sm font-semibold text-slate-800 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg"
+              >
+                গ্রাহক সেবা ও নীতিমালা
               </button>
 
               {isAdmin && (

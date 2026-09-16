@@ -27,8 +27,10 @@ interface StoreContextType {
   setSelectedCategory: (cat: string | null) => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  activeView: 'home' | 'products' | 'cart' | 'checkout' | 'blog' | 'blogDetail' | 'admin' | 'orders';
-  setActiveView: (view: 'home' | 'products' | 'cart' | 'checkout' | 'blog' | 'blogDetail' | 'admin' | 'orders') => void;
+  activeView: 'home' | 'products' | 'cart' | 'checkout' | 'blog' | 'blogDetail' | 'admin' | 'orders' | 'policy';
+  setActiveView: (view: 'home' | 'products' | 'cart' | 'checkout' | 'blog' | 'blogDetail' | 'admin' | 'orders' | 'policy') => void;
+  policyTab: 'refund' | 'warranty' | 'privacy' | 'contact' | 'faq';
+  setPolicyTab: (tab: 'refund' | 'warranty' | 'privacy' | 'contact' | 'faq') => void;
   selectedProductId: string | null;
   setSelectedProductId: (id: string | null) => void;
   selectedBlogPostId: string | null;
@@ -48,6 +50,8 @@ const StoreContext = createContext<StoreContextType>({
   setSearchQuery: () => {},
   activeView: 'home',
   setActiveView: () => {},
+  policyTab: 'refund',
+  setPolicyTab: () => {},
   selectedProductId: null,
   setSelectedProductId: () => {},
   selectedBlogPostId: null,
@@ -64,7 +68,8 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeView, setActiveView] = useState<'home' | 'products' | 'cart' | 'checkout' | 'blog' | 'blogDetail' | 'admin' | 'orders'>('home');
+  const [activeView, setActiveView] = useState<'home' | 'products' | 'cart' | 'checkout' | 'blog' | 'blogDetail' | 'admin' | 'orders' | 'policy'>('home');
+  const [policyTab, setPolicyTab] = useState<'refund' | 'warranty' | 'privacy' | 'contact' | 'faq'>('refund');
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [selectedBlogPostId, setSelectedBlogPostId] = useState<string | null>(null);
 
@@ -155,6 +160,8 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setSearchQuery,
         activeView,
         setActiveView,
+        policyTab,
+        setPolicyTab,
         selectedProductId,
         setSelectedProductId,
         selectedBlogPostId,
